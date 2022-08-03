@@ -113,7 +113,6 @@ int
 crypto_sign_open(unsigned char *m, unsigned long long *mlen,
                  const unsigned char *sm, unsigned long long smlen,
                  const unsigned char *pk){
-  int i;
   b_sparse_poly c;
   int64 Fc[PASS_N] = {0};
   int64 Fz[PASS_N] = {0};
@@ -135,7 +134,7 @@ crypto_sign_open(unsigned char *m, unsigned long long *mlen,
   ntt(Fc, c.val);
   ntt(Fz, z); //smlen
 
-  for(i=0; i<PASS_t; i++) {
+  for(int i=0; i<PASS_t; i++) {
     Fz[S[i]] -= Fc[S[i]] * pk[S[i]];
   }
 
@@ -144,7 +143,7 @@ crypto_sign_open(unsigned char *m, unsigned long long *mlen,
   crypto_hash_sha512(msg_digest, sm, smlen);
   hash(h2, Fz, msg_digest);
 
-  for(i=0; i<HASH_BYTES; i++) {
+  for(int i=0; i<HASH_BYTES; i++) {
     if(h2[i] != m[i])
       return INVALID;
   }
