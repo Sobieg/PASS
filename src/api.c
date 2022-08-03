@@ -23,24 +23,24 @@
 //static int randpos;
 
 int
-crypto_sign_keypair(unsigned char *pk, unsigned char *sk){
+crypto_sign_keypair(int64 *pk, int64 *sk) {
 
-	int64 key[PASS_N];
-	gen_key(key);
+//	int64 key[PASS_N];
+	gen_key(sk);
 
   // printf("\n\nKey: ");
   // for(int i=0; i<PASS_N; i++)
   //   printf("%lld, ", ((long long int) key[i]));
 
-	int64 pubkey[PASS_N] = {0};
-	gen_pubkey(pubkey, key);
+//	int64 pubkey[PASS_N] = {0};
+	gen_pubkey(pk, sk);
 
   // printf("\n\nPubkey: ");
   // for(int i=0; i<PASS_N; i++)
   //   printf("%lld, ", ((long long int) pubkey[i]));
   
-  sk = (unsigned char*)key;
-  pk = (unsigned char*)pubkey;
+//  sk = (unsigned char*)key;
+//  pk = (unsigned char*)pubkey;
 
   return 0;
 }
